@@ -12,7 +12,10 @@ if (isset($current['onselect'])) $current['onselect']();
 
 $title = $current['title'];
 
-$content = file_get_contents(__DIR__ . '/templates/' . $current['content']);
+if (file_exists(__DIR__ . '/templates/' . $current['content']))
+    $content = file_get_contents(__DIR__ . '/templates/' . $current['content']);
+else $content = file_get_contents(__DIR__ . '/templates/404.html');
+
 if (isset($current['active'])) {
     $active = $current['active'];
 } else {

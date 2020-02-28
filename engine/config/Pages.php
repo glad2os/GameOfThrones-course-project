@@ -4,15 +4,16 @@ use Database\MySQLi;
 
 $pages = [
     '' => [
-        'title' => 'GoT',
+        'title' => 'Game of Thrones',
         'content' => 'index.html',
         'active' => 0,
-        'scripts' => ['']
+        'scripts' => ['api','cookies']
     ],
     'sign_up' => [
         'title' => 'Регистрация',
         'content' => 'sign_up.html',
         'active' => 5,
+        'scripts' => ['api','cookies'],
         'onselect' => function () {
             if (authByToken(new MySQLi())) {
                 header('Location: /account');
@@ -24,6 +25,7 @@ $pages = [
         'title' => 'Авторизация',
         'content' => 'sign_in.html',
         'active' => 5,
+        'scripts' => ['api','cookies'],
         'onselect' => function () {
             if (authByToken(new MySQLi())) {
                 header('Location: /account');
@@ -40,12 +42,7 @@ $pages = [
                 exit();
             }
         },
-        'scripts' => ['account_loader']
-    ],
-    'catalog' => [
-        'title' => 'Каталог | GLADDOS.STUDIO',
-        'content' => 'catalog.html',
-        'scripts' => ['catalog_loader']
+        'scripts' => ['api','account_loader','cookies']
     ],
     'admin' => [
         'title' => 'Панель администратора | GLADDOS.STUDIO',

@@ -14,14 +14,11 @@ function reg(form) {
     request('user/register',
         {
             ['login']: form.login.value,
-            ['password']: form.password.value,
-            ['first_name']: form.first_name.value,
-            ['second_name']: form.second_name.value,
-            ['last_name']: form.last_name.value
+            ['password']: form.password.value
         },
         function (status, responseText) {
             if (status === 204) {
-                window.location.href = '/signin';
+                window.location.href = '/sign_in';
             } else {
                 console.log(responseText);
                 alert(JSON.parse(responseText)['issueMessage']);

@@ -38,10 +38,10 @@ class MySQLi extends \MySQLi
      * @return int inserted id
      * @throws DbException in case of SQL error
      */
-    public function registerUser($login, $password, $firstName, $secondName, $lastName)
+    public function registerUser($login, $password)
     {
-        $stmt = $this->prepare("insert into users (login, password_hash, first_name, second_name, last_name) value (?, md5(?), ?, ?, ?)");
-        $stmt->bind_param("sssss", $login, $password, $firstName, $secondName, $lastName);
+        $stmt = $this->prepare("insert into users (login, password_hash) value (?, md5(?))");
+        $stmt->bind_param("ss", $login, $password);
         $stmt->execute();
         if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
         $result = $stmt->insert_id;
@@ -153,7 +153,7 @@ class MySQLi extends \MySQLi
      */
     public function getUserInfo($id)
     {
-        $stmt = $this->prepare("select id, login, first_name, second_name, last_name, permissions from users where id = ?");
+        $stmt = $this->prepare("select id, login, permissions from users where id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
