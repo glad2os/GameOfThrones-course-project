@@ -32,9 +32,11 @@ header .logo p {
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
 }
-header .menu{
+
+header .menu {
     border-bottom: 1px solid #dddddd;
 }
+
 main {
     padding: 10px;
 }

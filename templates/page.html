@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/assets/css/main.css">
     <title><?=$title?></title>
 </head>
@@ -27,10 +30,21 @@
                             <a class="nav-link" href="#">News</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"> Histories & Lore</a>
+                            <a class="nav-link" href="lore"> Histories & Lore</a>
                         </li>
-                        <li>
-                            <a class="nav-link" href="">Great house</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="great_houses">Great houses</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                                Сharacters
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="stark">Stark</a>
+                                <a class="dropdown-item" href="#">Lannister</a>
+                                <a class="dropdown-item" href="#">Targaryen</a>
+                                <a class="dropdown-item" href="#">Other</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About Us</a>
@@ -38,8 +52,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Forums</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="sign_up">Personal</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="account" id="navbardrop2" data-toggle="dropdown">
+                                Account
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="sign_up">Registration</a>
+                                <a class="dropdown-item" href="sign_in">Authorization</a>
+                            </div>
                         </li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
