@@ -27,6 +27,30 @@ $pages = [
         'active' => 4,
         'scripts' => ['api', 'cookies'],
     ],
+    'lannister' => [
+        'title' => 'Ланнистеры',
+        'content' => 'lannister.html',
+        'active' => 4,
+        'scripts' => ['api', 'cookies'],
+    ],
+    'targaryen' => [
+        'title' => 'Таргариены',
+        'content' => 'targaryen.html',
+        'active' => 4,
+        'scripts' => ['api', 'cookies'],
+    ],
+    'other' => [
+        'title' => 'Другие',
+        'content' => 'other.html',
+        'active' => 4,
+        'scripts' => ['api', 'cookies'],
+    ],
+    'about_us' => [
+        'title' => 'О нас',
+        'content' => 'about_us.html',
+        'active' => 5,
+        'scripts' => ['api', 'cookies'],
+    ],
     'sign_up' => [
         'title' => 'Регистрация',
         'content' => 'sign_up.html',

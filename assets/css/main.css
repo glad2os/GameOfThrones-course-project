@@ -4,6 +4,26 @@
     margin: 0 auto;
 }
 
+body {
+    margin: 0;
+    display: flex;
+    flex-flow: row wrap;
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+}
+
+main {
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    align-self: flex-end;
+}
+
 @font-face {
     font-family: 'GameofThrones';
     src: url('../fonts/Game of Thrones.ttf');
@@ -74,3 +94,18 @@ footer {
     border-top: solid #dddddd 1px;
     padding: 20px;
 }
+.hero img{
+    height: 150px;
+    width: auto;
+
+}
+/*.hero img {*/
+/*    width: 300px;*/
+/*    height: auto;*/
+/*    -webkit-transition: .3s ease-in-out;*/
+/*    transition: .3s ease-in-out;*/
+/*}*/
+
+/*.hero img:hover {*/
+/*    width: 350px;*/
+/*}*/
