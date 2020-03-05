@@ -6,56 +6,56 @@ $pages = [
     '' => [
         'title' => 'Game of Thrones',
         'content' => 'index.html',
-        'active' => 0,
-        'scripts' => ['api', 'cookies']
+        'activeNavBtn' => "Home",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'lore' => [
         'title' => 'Сюжет',
         'content' => 'lore.html',
-        'active' => 2,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Histories & Lore",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'great_houses' => [
         'title' => 'Великие дома',
         'content' => 'great_houses.html',
-        'active' => 3,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Great houses",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'stark' => [
         'title' => 'Старки',
         'content' => 'stark.html',
-        'active' => 4,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Сharacters",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'lannister' => [
         'title' => 'Ланнистеры',
         'content' => 'lannister.html',
-        'active' => 4,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Сharacters",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'targaryen' => [
         'title' => 'Таргариены',
         'content' => 'targaryen.html',
-        'active' => 4,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Сharacters",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'other' => [
         'title' => 'Другие',
         'content' => 'other.html',
-        'active' => 4,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Сharacters",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'about_us' => [
         'title' => 'О нас',
         'content' => 'about_us.html',
-        'active' => 5,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "About Us",
+        'scripts' => ['api', 'cookies', 'nav-del'],
     ],
     'sign_up' => [
         'title' => 'Регистрация',
         'content' => 'sign_up.html',
-        'active' => 7,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Account",
+        'scripts' => ['api', 'cookies', 'nav-del'],
         'onselect' => function () {
             if (authByToken(new MySQLi())) {
                 header('Location: /account');
@@ -66,8 +66,8 @@ $pages = [
     'sign_in' => [
         'title' => 'Авторизация',
         'content' => 'sign_in.html',
-        'active' => 7,
-        'scripts' => ['api', 'cookies'],
+        'activeNavBtn' => "Account",
+        'scripts' => ['api', 'cookies', 'nav-del'],
         'onselect' => function () {
             if (authByToken(new MySQLi())) {
                 header('Location: /account');
@@ -78,19 +78,30 @@ $pages = [
     'account' => [
         'title' => 'Личный кабинет',
         'content' => 'account.html',
-        'active' => 7,
+        'activeNavBtn' => "Account",
         'onselect' => function () {
             if (!authByToken(new MySQLi())) {
                 header('Location: /sign_in');
                 exit();
             }
         },
-        'scripts' => ['api', 'account_loader', 'cookies']
+        'scripts' => ['api', 'account_loader', 'cookies', 'nav-del']
     ],
     'post' => [
         'title' => 'Добавить новостной пост',
         'content' => 'post.html',
-        'scripts' => ['api', 'cookies'],
+        'scripts' => ['api', 'cookies', 'nav-del'],
+        'onselect' => function () {
+            $mysqli = new MySQLi();
+            if (!authByToken($mysqli)) {
+                header('Location: /sign_in');
+                exit();
+            }
+            if (!checkPermissions($mysqli)) {
+                header('Location: /403');
+                exit();
+            }
+        },
     ],
     'admin' => [
         'title' => 'Панель администратора | GLADDOS.STUDIO',
@@ -106,7 +117,7 @@ $pages = [
                 exit();
             }
         },
-        'scripts' => ['admin_loader']
+        'scripts' => ['api']
     ],
     '404' => [
         'title' => 'Не найдено | GLADDOS.STUDIO',

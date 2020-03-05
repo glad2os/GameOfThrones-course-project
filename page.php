@@ -16,10 +16,10 @@ if (file_exists(__DIR__ . '/templates/' . $current['content']))
     $content = file_get_contents(__DIR__ . '/templates/' . $current['content']);
 else $content = file_get_contents(__DIR__ . '/templates/404.html');
 
-if (isset($current['active'])) {
-    $active = $current['active'];
+if (isset($current['activeNavBtn'])) {
+    $activeNavBtn = $current['activeNavBtn'];
 } else {
-    $active = 0;
+    $activeNavBtn = "Home";
 }
 
 $scripts = '';

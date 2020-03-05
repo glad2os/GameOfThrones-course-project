@@ -76,6 +76,22 @@ function updateUser(form) {
         });
 }
 
+function setPermissions(form) {
+    request('user/setpermissions',
+        {
+            ['login']: form.login.value
+        },
+        function (status, responseText) {
+            if (status === 204) {
+                alert("Done!");
+                //window.location.href = '/admin';
+            } else {
+                console.log(responseText);
+                alert(JSON.parse(responseText)['issueMessage']);
+            }
+        });
+}
+
 function addBook(form) {
     const authors = [].map.call(form.getElementsByClassName("ui label"), function (e) {
         return Number(e.getAttribute('data-value'))
