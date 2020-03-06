@@ -13,7 +13,13 @@ function authByToken($mysqli)
  * @param $mysqli \Database\MySQLi
  * @return bool
  */
+
 function checkPermissions($mysqli)
 {
     return isset($_COOKIE['id']) && $mysqli->getUserPermissions($_COOKIE['id']);
+}
+
+function getThread($id, $mysqli)
+{
+    return $mysqli->checkThreadExist($id);
 }

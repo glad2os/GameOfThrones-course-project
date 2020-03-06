@@ -6,9 +6,10 @@ include_once __DIR__ . '/engine/database/MySQLi.php';
 include_once __DIR__ . '/engine/helpers/auth.php';
 
 $current = $pages[$routes[1]];
+
 if ($current == null) $current = $pages['404'];
 
-if (isset($current['onselect'])) $current['onselect']();
+if (isset($current['onload'])) $current['onload']();
 
 $title = $current['title'];
 
@@ -22,10 +23,13 @@ if (isset($current['activeNavBtn'])) {
     $activeNavBtn = "Home";
 }
 
+$thread = $current['thread'];
+
 $scripts = '';
 if (isset($current['scripts'])) {
     foreach ($current['scripts'] as $script) {
         $scripts .= "<script rel=\"script\" type=\"application/javascript\" src=\"/assets/js/${script}.js\"></script>";
     }
 }
+
 include __DIR__ . '/templates/page.html';

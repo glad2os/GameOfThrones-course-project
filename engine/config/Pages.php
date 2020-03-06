@@ -9,6 +9,17 @@ $pages = [
         'activeNavBtn' => "Home",
         'scripts' => ['api', 'cookies', 'nav-del'],
     ],
+    'threads' => [
+        'title' => "Статья #" . $routes[2],
+        'content' => 'threads.html',
+        'thread' => $routes[2],
+        'onload' => function () use ($routes) {
+            if (!getThread($routes[2], new MySQLi())["count(*)"]) {
+                header('Location: /404');
+            }
+        },
+        'scripts' => ['api', 'cookies', 'threads_loader']
+    ],
     'lore' => [
         'title' => 'Сюжет',
         'content' => 'lore.html',
@@ -56,7 +67,7 @@ $pages = [
         'content' => 'sign_up.html',
         'activeNavBtn' => "Account",
         'scripts' => ['api', 'cookies', 'nav-del'],
-        'onselect' => function () {
+        'onload' => function () {
             if (authByToken(new MySQLi())) {
                 header('Location: /account');
                 exit();
@@ -68,7 +79,7 @@ $pages = [
         'content' => 'sign_in.html',
         'activeNavBtn' => "Account",
         'scripts' => ['api', 'cookies', 'nav-del'],
-        'onselect' => function () {
+        'onload' => function () {
             if (authByToken(new MySQLi())) {
                 header('Location: /account');
                 exit();
@@ -79,7 +90,7 @@ $pages = [
         'title' => 'Личный кабинет',
         'content' => 'account.html',
         'activeNavBtn' => "Account",
-        'onselect' => function () {
+        'onload' => function () {
             if (!authByToken(new MySQLi())) {
                 header('Location: /sign_in');
                 exit();
@@ -91,7 +102,7 @@ $pages = [
         'title' => 'Добавить новостной пост',
         'content' => 'post.html',
         'scripts' => ['api', 'cookies', 'nav-del'],
-        'onselect' => function () {
+        'onload' => function () {
             $mysqli = new MySQLi();
             if (!authByToken($mysqli)) {
                 header('Location: /sign_in');
@@ -106,7 +117,7 @@ $pages = [
     'admin' => [
         'title' => 'Панель администратора | GLADDOS.STUDIO',
         'content' => 'admin.html',
-        'onselect' => function () {
+        'onload' => function () {
             $mysqli = new MySQLi();
             if (!authByToken($mysqli)) {
                 header('Location: /sign_in');

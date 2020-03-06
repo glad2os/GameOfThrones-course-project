@@ -228,4 +228,53 @@ class MySQLi extends \MySQLi
         if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
         $stmt->close();
     }
+
+    /* Thread Table */
+
+    /**
+     * @param $id
+     * @return array|null
+     */
+    public function checkThreadExist($id)
+    {
+        $stmt = $this->prepare("SELECT count(*) FROM threads WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $result = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $result;
+    }
+
+    public function getThread($id)
+    {
+        $stmt = $this->prepare("SELECT id, title, text, date_post, img, verified FROM threads WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $result = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $result;
+    }
+
+    public function getAuthorsOfThread($threadId)
+    {
+        $stmt = $this->prepare("select login from users u left join threads_links tl on u.id = tl.user_id where tl.thread_id = ?");
+        $stmt->bind_param("i", $threadId);
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $result;
+    }
+
+    public function countOfThreads()
+    {
+        $stmt = $this->prepare("select count(id) from threads");
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $result = $stmt->get_result()->fetch_array(MYSQLI_NUM)[0];
+        $stmt->close();
+        return $result;
+    }
 }
