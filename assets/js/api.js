@@ -92,20 +92,18 @@ function setPermissions(form) {
         });
 }
 
-function addBook(form) {
-    const authors = [].map.call(form.getElementsByClassName("ui label"), function (e) {
-        return Number(e.getAttribute('data-value'))
-    });
-    request('book/add',
+function addThread(form) {
+    request('threads/add',
         {
             ['title']: form.title.value,
-            ['isbn']: form.isbn.value,
-            ['price']: form.price.value,
-            ['authors']: authors
+            ['text']: form.text.value,
+            ['img']: form.img.value,
+            ['author']: getCookie('id')
         },
         function (status, responseText) {
             if (status === 204) {
-                window.location.href = '/admin';
+                console.log(responseText);
+                window.location.href = '/post';
             } else {
                 console.log(responseText);
                 alert(JSON.parse(responseText)['issueMessage']);

@@ -277,4 +277,28 @@ class MySQLi extends \MySQLi
         $stmt->close();
         return $result;
     }
+
+    /**
+     * @param mixed ...$string
+     * @return int
+     */
+    public function addThread($title, $text, $img)
+    {
+        $stmt = $this->prepare("INSERT INTO threads (title, text, img) VALUES (?,?,?)");
+        $stmt->bind_param("sss", $title, $text, $img);
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $output = $stmt->insert_id;
+        $stmt->close();
+        return $output;
+    }
+
+    public function linkThread($authorId, $threadId)
+    {
+        $stmt = $this->prepare("insert into threads_links (user_id, thread_id ) values (?, ?)");
+        $stmt->bind_param("ii", $authorId, $threadId);
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $stmt->close();
+    }
 }
