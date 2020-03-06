@@ -257,13 +257,25 @@ class MySQLi extends \MySQLi
         return $result;
     }
 
+    public function getAllThreads()
+    {
+        $stmt = $this->prepare("SELECT * FROM threads");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
+        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+        return $result;
+    }
+
+
     public function getAuthorsOfThread($threadId)
     {
         $stmt = $this->prepare("select login from users u left join threads_links tl on u.id = tl.user_id where tl.thread_id = ?");
         $stmt->bind_param("i", $threadId);
         $stmt->execute();
         if ($stmt->errno != 0) throw new DbException($stmt->error, $stmt->errno);
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $result = $stmt->get_result()->fetch_assoc();
         $stmt->close();
         return $result;
     }

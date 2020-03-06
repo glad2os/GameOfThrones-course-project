@@ -1,16 +1,14 @@
 ## API
 
 * /api
-  * /author
+  * /threads
     * /add
-    * /get_all
-    * /update
-  * /book
-    * /add
-    * /get_page
+    * /get_thread
+    * /get_news
   * /user
     * /get_info
     * /register
+    * /setpermissions
     * /sign_in
     * /sign_out
     * /update
