@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'GameofThrones';
+    src: url('../fonts/Game of Thrones.ttf');
+}
+
+html {
+    height: 100%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: "Open Sans", sans-serif;
+}
+
+header .logo {
+    color: white;
+    background-color: #212121;
+    text-align: center;
+    margin: auto;
+}
+
+header .logo h1 {
+    font-family: "GameofThrones", sans-serif;
+    font-size: 50px;
+    padding: 20px;
+
+}
+
+header .logo p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+}
+
+header .menu {
+    border-bottom: 1px solid #dddddd;
+}
+
+main {
+    padding: 10px;
+}
+
+main .post .post-date {
+    color: gray;
+}
+
+main .post img {
+    height: 390px;
+    width: 700px;
+}
+
+main .line {
+    border-left: 1px solid #dddddd;
+    padding-left: 25px;
+    font-size: 15pt;
+    font-weight: bold;
+    padding-right: 10px;
+
+}
+
+main .ad img {
+    height: 530px;
+    width: 300px;
+}
+
+footer {
+    border-top: solid #dddddd 1px;
+    padding: 20px;
+}
